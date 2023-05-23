@@ -18,13 +18,13 @@ public class SecurityAspect {
     @Autowired
     SecurityService securityService;
 
-    @Before("@annotation(tokenRequired)")
-    public void authenticateWithToken(TokenRequired tokenRequired){
-        ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
-        HttpServletRequest request = requestAttributes.getRequest();
+        @Before("@annotation(tokenRequired)")
+        public void authenticateWithToken(TokenRequired tokenRequired){
+            ServletRequestAttributes requestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+            HttpServletRequest request = requestAttributes.getRequest();
 
-        String token = request.getHeader("token");
-        if(StringUtils.isEmpty(token)){ //비어있는지 확인
+            String token = request.getHeader("token");
+            if(StringUtils.isEmpty(token)){ //비어있는지 확인
             throw new IllegalArgumentException("token is empty");
         }
 
