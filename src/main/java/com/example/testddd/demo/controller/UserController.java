@@ -1,5 +1,6 @@
 package com.example.testddd.demo.controller;
 
+import com.example.testddd.demo.aspect.TokenRequired;
 import com.example.testddd.demo.dto.UserDTO;
 import com.example.testddd.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @TokenRequired
     @GetMapping("/{userId}")
     public UserDTO getUserByUserId(@PathVariable String userId){
         return userService.getUserByUserId(userId);
